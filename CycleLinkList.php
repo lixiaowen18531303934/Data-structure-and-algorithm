@@ -66,14 +66,36 @@ class CycleLinkList{
 	    $current->data=$data;
 	    return true;
 	}
+	//去掉头结点（头结点只是标识循坏链表的启示点）
+	public function remove(){
+		$current=$this->head;
+		while($current->next != $this->head){
+			$current=$current->next;
+		}
+		$temporary=$current->next->next;//跳过头结点，指向第一个节点
+		$current->next=$temporary;//将尾节点的指针指向第一个节点
+		$this->head=$current->next;//改变循环指针
+	}
 }
+//约瑟夫环
+//生成一个由41个元素组成的循环链表
+$newcyclelinklist=new CycleLinkList;
+for($i=1;$i<42;$i++){
+    $newcyclelinklist->add($i);
+}
+//去掉头结点
+$newcyclelinklist->remove();
 
-$cyclelinklist=new CycleLinkList;
-$cyclelinklist->add('a');
-$cyclelinklist->add('b');
-$cyclelinklist->add('c');
-$cyclelinklist->add('d');
-$cyclelinklist->add('e');
-echo $cyclelinklist->count();
-$cyclelinklist->del(3);
-$cyclelinklist->update(3,'z');
+function Joseph($cyclelinklist){	
+    while ($cyclelinklist != $cyclelinklist->next) {
+        for($i=0;$i<1;$i++){
+            $cyclelinklist=$cyclelinklist->next;//当前节点为2
+        }
+        echo $cyclelinklist->next->data.'-';//输出当前节点的下一个节点
+        $temporary=$cyclelinklist->next->next;//将下一节点的下一节点赋值临时变量
+        $cyclelinklist->next=$temporary;//将下下一节点的指针赋值给下一节点
+		$cyclelinklist=$cyclelinklist->next;//将指针移到下一节点开始计数
+    }
+	echo $cyclelinklist->data;//输出最后链表的值
+}
+Joseph($newcyclelinklist->head); 
