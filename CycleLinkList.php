@@ -66,7 +66,7 @@ class CycleLinkList{
 	    $current->data=$data;
 	    return true;
 	}
-	//去掉头结点（头结点只是标识循坏链表的启示点）
+	//去掉头结点（头结点只是标识循坏链表的起始点）
 	public function remove(){
 		$current=$this->head;
 		while($current->next != $this->head){
