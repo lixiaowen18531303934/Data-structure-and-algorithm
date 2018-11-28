@@ -85,7 +85,7 @@ for($i=1;$i<42;$i++){
 }
 //去掉头结点
 $newcyclelinklist->remove();
-
+//约瑟夫环问题
 function Joseph($cyclelinklist){	
     while ($cyclelinklist != $cyclelinklist->next) {
         for($i=0;$i<1;$i++){
